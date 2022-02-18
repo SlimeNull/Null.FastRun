@@ -112,14 +112,7 @@ namespace Null.Faststart.WinForm
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-#if DEBUG
-            return;
-#endif
-            if (!SysUtil.IsAdministrator())
-            {
-                MessageBox.Show("Please run this application with Admistrator permission.", "Error - Null.Faststart", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(-1);
-            }
+
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
