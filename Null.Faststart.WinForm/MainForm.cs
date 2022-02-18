@@ -22,18 +22,17 @@ namespace Null.Faststart.WinForm
 {
     public partial class MainForm : Form
     {
-        public string AppConfigPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
-        public string AppDatabasePath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linksinfo.db");
+        public static string AppConfigPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
 
         public AppConfig Config { get; }
         public BindingList<LinkInfo> LinkList { get; }
 
-        public ISerializer ConfigSerializer { get; } = new Lazy<ISerializer>(() => new SerializerBuilder()
+        public ISerializer ConfigSerializer { get; } = new SerializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .Build()).Value;
-        public IDeserializer ConfigDeserializer { get; } = new Lazy<IDeserializer>(() => new DeserializerBuilder()
+            .Build();
+        public IDeserializer ConfigDeserializer { get; } = new DeserializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .Build()).Value;
+            .Build();
 
         public MainForm()
         {
@@ -56,6 +55,7 @@ namespace Null.Faststart.WinForm
                 new BindingList<LinkInfo>(Config.Links.Select(ln => new LinkInfo(ln.Key, ln.Value)).ToList());
             lv_links.DataSource = LinkList;
         }
+
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -90,7 +90,14 @@ namespace Null.Faststart.WinForm
         private void btn_apply_all_Click(object sender, EventArgs e)
         {
             ApplyConfig();
-            CoreManager.ApplyAll(Config);
+            if (CliCall.ApplyConfig(AppConfigPath) == 0)
+            {
+                MessageBox.Show("All done", "Succeed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong, please retry", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ApplyConfig()
@@ -122,7 +129,6 @@ namespace Null.Faststart.WinForm
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            btn_apply_all_Click(sender, e);
             Close();
         }
 

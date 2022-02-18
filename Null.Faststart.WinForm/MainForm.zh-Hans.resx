@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btn_ok.Text" xml:space="preserve">
-    <value>确认</value>
+    <value>关闭</value>
   </data>
   <data name="btn_ok.ToolTip" xml:space="preserve">
     <value>应用并关闭</value>

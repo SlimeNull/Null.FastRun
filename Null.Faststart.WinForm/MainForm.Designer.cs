@@ -50,7 +50,6 @@
             resources.ApplyResources(this.btn_ok, "btn_ok");
             this.btn_ok.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btn_ok.Name = "btn_ok";
-            this.toolTip.SetToolTip(this.btn_ok, resources.GetString("btn_ok.ToolTip"));
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
@@ -58,7 +57,6 @@
             // 
             resources.ApplyResources(this.btn_apply_all, "btn_apply_all");
             this.btn_apply_all.Name = "btn_apply_all";
-            this.toolTip.SetToolTip(this.btn_apply_all, resources.GetString("btn_apply_all.ToolTip"));
             this.btn_apply_all.UseVisualStyleBackColor = true;
             this.btn_apply_all.Click += new System.EventHandler(this.btn_apply_all_Click);
             // 
@@ -66,7 +64,6 @@
             // 
             resources.ApplyResources(this.btn_config, "btn_config");
             this.btn_config.Name = "btn_config";
-            this.toolTip.SetToolTip(this.btn_config, resources.GetString("btn_config.ToolTip"));
             this.btn_config.UseVisualStyleBackColor = true;
             this.btn_config.Click += new System.EventHandler(this.btn_config_Click);
             // 
@@ -75,7 +72,6 @@
             resources.ApplyResources(this.btn_cancel, "btn_cancel");
             this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancel.Name = "btn_cancel";
-            this.toolTip.SetToolTip(this.btn_cancel, resources.GetString("btn_cancel.ToolTip"));
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
@@ -83,7 +79,6 @@
             // 
             resources.ApplyResources(this.btn_add, "btn_add");
             this.btn_add.Name = "btn_add";
-            this.toolTip.SetToolTip(this.btn_add, resources.GetString("btn_add.ToolTip"));
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -91,7 +86,6 @@
             // 
             resources.ApplyResources(this.btn_edit, "btn_edit");
             this.btn_edit.Name = "btn_edit";
-            this.toolTip.SetToolTip(this.btn_edit, resources.GetString("btn_edit.ToolTip"));
             this.btn_edit.UseVisualStyleBackColor = true;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
@@ -99,7 +93,6 @@
             // 
             resources.ApplyResources(this.btn_remove, "btn_remove");
             this.btn_remove.Name = "btn_remove";
-            this.toolTip.SetToolTip(this.btn_remove, resources.GetString("btn_remove.ToolTip"));
             this.btn_remove.UseVisualStyleBackColor = true;
             this.btn_remove.Click += new System.EventHandler(this.btn_remove_Click);
             // 
@@ -107,18 +100,17 @@
             // 
             resources.ApplyResources(this.btn_about, "btn_about");
             this.btn_about.Name = "btn_about";
-            this.toolTip.SetToolTip(this.btn_about, resources.GetString("btn_about.ToolTip"));
             this.btn_about.UseVisualStyleBackColor = true;
             this.btn_about.Click += new System.EventHandler(this.btn_about_Click);
             // 
             // lv_links
             // 
-            resources.ApplyResources(this.lv_links, "lv_links");
             this.lv_links.AllowDrop = true;
             this.lv_links.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.lv_links.BackgroundColor = System.Drawing.SystemColors.Control;
             this.lv_links.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lv_links.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.lv_links, "lv_links");
             this.lv_links.MultiSelect = false;
             this.lv_links.Name = "lv_links";
             this.lv_links.RowHeadersVisible = false;
@@ -126,7 +118,6 @@
             this.lv_links.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.lv_links.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.lv_links.ShowEditingIcon = false;
-            this.toolTip.SetToolTip(this.lv_links, resources.GetString("lv_links.ToolTip"));
             this.lv_links.DragDrop += new System.Windows.Forms.DragEventHandler(this.lv_links_DragDrop);
             this.lv_links.DragEnter += new System.Windows.Forms.DragEventHandler(this.lv_links_DragEnter);
             this.lv_links.DoubleClick += new System.EventHandler(this.lv_links_DoubleClick);
@@ -137,7 +128,6 @@
             this.bdr_links.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bdr_links.Controls.Add(this.lv_links);
             this.bdr_links.Name = "bdr_links";
-            this.toolTip.SetToolTip(this.bdr_links, resources.GetString("bdr_links.ToolTip"));
             // 
             // MainForm
             // 
@@ -155,7 +145,6 @@
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_ok);
             this.Name = "MainForm";
-            this.toolTip.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lv_links)).EndInit();
             this.bdr_links.ResumeLayout(false);

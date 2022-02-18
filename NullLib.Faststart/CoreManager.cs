@@ -9,14 +9,24 @@ namespace NullLib.Faststart
 {
     public static class CoreManager
     {
-        public static void ApplyAll(AppConfig config)
+        public static int ApplyAll(AppConfig config)
         {
-            ApplyLinks(config);
-            ApplySysPath(config);
+            return
+                ApplyLinks(config) +
+                ApplySysPath(config);
         }
 
-        public static void ApplyLinks(AppConfig config)
+        public static int UninstallAll(AppConfig config)
         {
+            return
+                UninstallLinks(config) +
+                UninstallSysPath(config);
+        }
+
+        public static int ApplyLinks(AppConfig config)
+        {
+            int errors = 0;
+
             DirectoryInfo basedir = new DirectoryInfo(config.LinksPath);
             if (!basedir.Exists)
                 basedir.Create();
@@ -35,14 +45,20 @@ namespace NullLib.Faststart
                     FileInfo file = new FileInfo(linkTarget);
                     if (file.Exists)
                     {
-                        WinAPI.CreateSymbolicLink(linkFileName, file.FullName, 0);
+                        if (!WinAPI.CreateSymbolicLink(linkFileName, file.FullName, 0))
+                            errors++;
                     }
                     else
                     {
                         DirectoryInfo dir = new DirectoryInfo(linkTarget);
                         if (dir.Exists)
                         {
-                            WinAPI.CreateSymbolicLink(linkFileName, file.FullName, WinAPI.SYMBOLIC_LINK_FLAG_DIRECTORY);
+                            if (!WinAPI.CreateSymbolicLink(linkFileName, file.FullName, WinAPI.SYMBOLIC_LINK_FLAG_DIRECTORY))
+                                errors++;
+                        }
+                        else
+                        {
+                            errors++;
                         }
                     }
                 }
@@ -56,14 +72,44 @@ namespace NullLib.Faststart
                     FileInfo file = new FileInfo(linkTarget);
                     if (file.Exists)
                     {
-                        WinAPI.CreateHardLink(linkFileName, file.FullName, IntPtr.Zero);
+                        if (!WinAPI.CreateHardLink(linkFileName, file.FullName, IntPtr.Zero))
+                            errors++;
+                    }
+                    else
+                    {
+                        errors++;
                     }
                 }
             }
+            else
+            {
+                errors++;
+            }
+
+            return errors;
         }
 
-        public static void ApplySysPath(AppConfig config)
+        public static int UninstallLinks(AppConfig config)
         {
+            int errors = 0;
+
+            if (config.LinksPath != null)
+            {
+                DirectoryInfo dir = new(config.LinksPath);
+                if (dir.Exists)
+                    dir.Delete(true);
+            }
+            else
+            {
+                errors++;
+            }
+
+            return errors;
+        }
+
+        public static int ApplySysPath(AppConfig config)
+        {
+            int errors = 0;
             if (SysUtil.CanAccessSystemEnvironmentVariables())
             {
                 string pathEnv = SysUtil.GetSystemEnvironmentVariable("Path");
@@ -74,6 +120,31 @@ namespace NullLib.Faststart
                     SysUtil.SetSystemEnvironmentVariable("Path", string.Join(";", pathDirs.Append(config.LinksPath)));
                 }
             }
+            else
+            {
+                errors++;
+            }
+
+            return errors;
+        }
+
+        public static int UninstallSysPath(AppConfig config)
+        {
+            int errors = 0;
+
+            if (SysUtil.CanAccessSystemEnvironmentVariables())
+            {
+                string pathStr = SysUtil.GetSystemEnvironmentVariable("Path");
+                string[] paths = pathStr.Split(';');
+                string newPathStr = string.Join(";", paths.Where(s => s != config.LinksPath));
+                SysUtil.SetSystemEnvironmentVariable("Path", newPathStr);
+            }
+            else
+            {
+                errors++;
+            }
+
+            return errors;
         }
     }
 }

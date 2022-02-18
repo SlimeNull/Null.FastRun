@@ -1,6 +1,8 @@
 ﻿using Null.Faststart.Module;
 using Null.Faststart.Util;
+using Null.Faststart.WinForm.Util;
 using Null.Faststart.WinForm.ViewModule;
+using NullLib.Faststart;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,27 +45,18 @@ namespace Null.Faststart.WinForm.View
         {
             if (MessageBox.Show("This acction will remove registry key, link folder, continue?", "Tips", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Exception ex = null;
                 try
                 {
-                    if (SysUtil.CanAccessSystemEnvironmentVariables())
+                    if (CliCall.UninstallConfig(MainForm.AppConfigPath) == 0)
                     {
-                        string pathStr = SysUtil.GetSystemEnvironmentVariable("Path");
-                        string[] paths = pathStr.Split(';');
-                        string newPathStr = string.Join(";", paths.Where(s => s != ViewModule.LinksPath));
-                        SysUtil.SetSystemEnvironmentVariable("Path", newPathStr);
+                        MessageBox.Show("All done", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
-                    if (ViewModule.LinksPath != null)
-                    {
-                        DirectoryInfo dir = new(ViewModule.LinksPath);
-                        dir.Delete(true);
-                    }
+                }
+                catch (Exception _ex) { ex = _ex; }
 
-                    MessageBox.Show("All done", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Something went wrong, please retry, {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"Something went wrong, please retry, {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
