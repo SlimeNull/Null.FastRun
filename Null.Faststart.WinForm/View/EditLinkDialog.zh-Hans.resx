@@ -136,21 +136,32 @@
   <data name="lb_target.Text" xml:space="preserve">
     <value>目标</value>
   </data>
-  <data name="lklb_open.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lklb_openfolder.Location" type="System.Drawing.Point, System.Drawing">
     <value>429, 90</value>
   </data>
-  <data name="lklb_open.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lklb_openfolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
   </data>
-  <data name="lklb_open.Text" xml:space="preserve">
-    <value>打开</value>
+  <data name="lklb_openfolder.Text" xml:space="preserve">
+    <value>目录</value>
   </data>
   <data name="lb_tips.Text" xml:space="preserve">
     <value>提示: 你可以拖拽文件或目录到映射列表来添加它.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+  <data name="lnlb_openfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="lnlb_openfile.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="lb_open.Location" type="System.Drawing.Point, System.Drawing">
+    <value>331, 90</value>
+  </data>
+  <data name="lb_open.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 20</value>
+  </data>
+  <data name="lb_open.Text" xml:space="preserve">
+    <value>打开:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>链接编辑</value>

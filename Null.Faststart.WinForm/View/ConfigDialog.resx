@@ -143,9 +143,6 @@
   <data name="&gt;&gt;lb_linkmode.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Config</value>
-  </data>
   <data name="comb_linkmode.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 28</value>
   </data>
@@ -170,6 +167,9 @@
   </data>
   <data name="&gt;&gt;lb_linkmode.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="btn_cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 311</value>
   </data>
   <data name="txb_linkpath.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -222,8 +222,8 @@
   <data name="btn_ok.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="btn_cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>290, 311</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Config</value>
   </data>
   <data name="&gt;&gt;btn_cancel.Parent" xml:space="preserve">
     <value>$this</value>

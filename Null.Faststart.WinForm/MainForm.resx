@@ -120,6 +120,10 @@
   <data name="btn_edit.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btn_config.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 397</value>
@@ -154,7 +158,6 @@
   <data name="&gt;&gt;btn_apply_all.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lv_links.RowHeadersWidth" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
@@ -1347,20 +1350,17 @@
   <data name="bdr_links.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
-  <data name="btn_remove.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Null.Faststart</value>
+  </data>
+  <data name="&gt;&gt;btn_ok.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_remove.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btn_ok.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btn_about.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 40</value>
+  <data name="&gt;&gt;btn_edit.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="btn_add.Text" xml:space="preserve">
     <value>Add</value>
@@ -1397,6 +1397,9 @@
   </data>
   <data name="btn_cancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>582, 397</value>
+  </data>
+  <data name="&gt;&gt;btn_cancel.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="btn_config.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1452,11 +1455,8 @@
   <data name="btn_edit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;btn_apply_all.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_ok.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>800, 449</value>
   </data>
   <data name="bdr_links.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1494,9 +1494,6 @@
   <data name="btn_ok.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;btn_edit.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="btn_edit.Location" type="System.Drawing.Point, System.Drawing">
     <value>688, 58</value>
   </data>
@@ -1527,8 +1524,8 @@
   <data name="&gt;&gt;toolTip.Name" xml:space="preserve">
     <value>toolTip</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 449</value>
+  <data name="btn_about.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 40</value>
   </data>
   <data name="btn_about.ToolTip" xml:space="preserve">
     <value />
@@ -1542,8 +1539,8 @@
   <data name="&gt;&gt;lv_links.Parent" xml:space="preserve">
     <value>bdr_links</value>
   </data>
-  <data name="btn_cancel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;btn_apply_all.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btn_cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 40</value>
@@ -1557,20 +1554,23 @@
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>
   </data>
-  <data name="btn_cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="btn_remove.Text" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="btn_add.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;btn_cancel.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="btn_ok.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;lv_links.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lv_links.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="btn_cancel.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lv_links.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>

@@ -44,15 +44,31 @@ namespace Null.Faststart.WinForm.View
 
         static FolderBrowserDialog StaticFolderBrowserDialog { get; } = new FolderBrowserDialog()
         {
-            Description = "Choose a folder or file",
+            Description = "Choose a folder",
             ShowNewFolderButton = true,
         };
 
-        private void lklb_open_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lklb_openfolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (StaticFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (StaticFolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
             {
                 viewModule.Target = StaticFolderBrowserDialog.SelectedPath;
+            }
+        }
+
+        static OpenFileDialog StaticOpenFileDialog { get; } = new OpenFileDialog()
+        {
+            Title = "Choose a file",
+            CheckFileExists = true,
+            Multiselect = false,
+            Filter = "Any(*.*)|*.*",
+        };
+
+        private void lnlb_openfile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (StaticOpenFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                viewModule.Target = StaticOpenFileDialog.FileName;
             }
         }
     }

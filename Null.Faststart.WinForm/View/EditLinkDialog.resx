@@ -145,7 +145,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_ok.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="btn_cancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_cancel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="txb_name.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -196,7 +196,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txb_name.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="lb_name.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -223,7 +223,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb_name.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="txb_target.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -247,7 +247,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txb_target.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="lb_target.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -274,37 +274,37 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb_target.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
-  <data name="lklb_open.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="lklb_openfolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="lklb_open.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lklb_openfolder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lklb_open.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lklb_openfolder.Location" type="System.Drawing.Point, System.Drawing">
     <value>422, 90</value>
   </data>
-  <data name="lklb_open.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+  <data name="lklb_openfolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
   </data>
-  <data name="lklb_open.TabIndex" type="System.Int32, mscorlib">
+  <data name="lklb_openfolder.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="lklb_open.Text" xml:space="preserve">
-    <value>Open</value>
+  <data name="lklb_openfolder.Text" xml:space="preserve">
+    <value>Folder</value>
   </data>
-  <data name="&gt;&gt;lklb_open.Name" xml:space="preserve">
-    <value>lklb_open</value>
+  <data name="&gt;&gt;lklb_openfolder.Name" xml:space="preserve">
+    <value>lklb_openfolder</value>
   </data>
-  <data name="&gt;&gt;lklb_open.Type" xml:space="preserve">
+  <data name="&gt;&gt;lklb_openfolder.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lklb_open.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lklb_openfolder.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lklb_open.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;lklb_openfolder.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lb_tips.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -331,6 +331,66 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb_tips.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lnlb_openfile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lnlb_openfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lnlb_openfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lnlb_openfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>382, 90</value>
+  </data>
+  <data name="lnlb_openfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 20</value>
+  </data>
+  <data name="lnlb_openfile.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lnlb_openfile.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="&gt;&gt;lnlb_openfile.Name" xml:space="preserve">
+    <value>lnlb_openfile</value>
+  </data>
+  <data name="&gt;&gt;lnlb_openfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lnlb_openfile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lnlb_openfile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lb_open.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lb_open.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 90</value>
+  </data>
+  <data name="lb_open.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="lb_open.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lb_open.Text" xml:space="preserve">
+    <value>Open:</value>
+  </data>
+  <data name="&gt;&gt;lb_open.Name" xml:space="preserve">
+    <value>lb_open</value>
+  </data>
+  <data name="&gt;&gt;lb_open.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lb_open.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lb_open.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

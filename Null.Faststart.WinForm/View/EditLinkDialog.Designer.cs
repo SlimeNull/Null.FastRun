@@ -35,8 +35,10 @@
             this.lb_name = new System.Windows.Forms.Label();
             this.txb_target = new System.Windows.Forms.TextBox();
             this.lb_target = new System.Windows.Forms.Label();
-            this.lklb_open = new System.Windows.Forms.LinkLabel();
+            this.lklb_openfolder = new System.Windows.Forms.LinkLabel();
             this.lb_tips = new System.Windows.Forms.Label();
+            this.lnlb_openfile = new System.Windows.Forms.LinkLabel();
+            this.lb_open = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_ok
@@ -74,17 +76,29 @@
             resources.ApplyResources(this.lb_target, "lb_target");
             this.lb_target.Name = "lb_target";
             // 
-            // lklb_open
+            // lklb_openfolder
             // 
-            resources.ApplyResources(this.lklb_open, "lklb_open");
-            this.lklb_open.Name = "lklb_open";
-            this.lklb_open.TabStop = true;
-            this.lklb_open.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklb_open_LinkClicked);
+            resources.ApplyResources(this.lklb_openfolder, "lklb_openfolder");
+            this.lklb_openfolder.Name = "lklb_openfolder";
+            this.lklb_openfolder.TabStop = true;
+            this.lklb_openfolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklb_openfolder_LinkClicked);
             // 
             // lb_tips
             // 
             resources.ApplyResources(this.lb_tips, "lb_tips");
             this.lb_tips.Name = "lb_tips";
+            // 
+            // lnlb_openfile
+            // 
+            resources.ApplyResources(this.lnlb_openfile, "lnlb_openfile");
+            this.lnlb_openfile.Name = "lnlb_openfile";
+            this.lnlb_openfile.TabStop = true;
+            this.lnlb_openfile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnlb_openfile_LinkClicked);
+            // 
+            // lb_open
+            // 
+            resources.ApplyResources(this.lb_open, "lb_open");
+            this.lb_open.Name = "lb_open";
             // 
             // EditLinkDialog
             // 
@@ -92,8 +106,10 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_cancel;
+            this.Controls.Add(this.lb_open);
             this.Controls.Add(this.lb_tips);
-            this.Controls.Add(this.lklb_open);
+            this.Controls.Add(this.lnlb_openfile);
+            this.Controls.Add(this.lklb_openfolder);
             this.Controls.Add(this.lb_target);
             this.Controls.Add(this.txb_target);
             this.Controls.Add(this.lb_name);
@@ -117,7 +133,9 @@
         private System.Windows.Forms.Label lb_name;
         private System.Windows.Forms.TextBox txb_target;
         private System.Windows.Forms.Label lb_target;
-        private System.Windows.Forms.LinkLabel lklb_open;
+        private System.Windows.Forms.LinkLabel lklb_openfolder;
         private System.Windows.Forms.Label lb_tips;
+        private System.Windows.Forms.LinkLabel lnlb_openfile;
+        private System.Windows.Forms.Label lb_open;
     }
 }

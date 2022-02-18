@@ -73,6 +73,7 @@
             resources.ApplyResources(this.btn_uninstall, "btn_uninstall");
             this.btn_uninstall.Name = "btn_uninstall";
             this.btn_uninstall.UseVisualStyleBackColor = true;
+            this.btn_uninstall.Click += new System.EventHandler(this.btn_uninstall_Click);
             // 
             // btn_cancel
             // 
@@ -87,6 +88,7 @@
             this.AcceptButton = this.btn_ok;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_cancel;
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_uninstall);
             this.Controls.Add(this.btn_ok);

@@ -123,11 +123,18 @@
   <data name="btn_ok.ToolTip" xml:space="preserve">
     <value>应用并关闭</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_apply_all.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="btn_apply_all.Text" xml:space="preserve">
     <value>应用</value>
   </data>
   <data name="btn_apply_all.ToolTip" xml:space="preserve">
     <value>应用当前配置</value>
+  </data>
+  <data name="btn_config.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="btn_config.Text" xml:space="preserve">
     <value>配置</value>
@@ -135,11 +142,17 @@
   <data name="btn_config.ToolTip" xml:space="preserve">
     <value>更多配置项</value>
   </data>
+  <data name="btn_cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="btn_cancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="btn_cancel.ToolTip" xml:space="preserve">
     <value>不保存并关闭</value>
+  </data>
+  <data name="btn_add.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="btn_add.Text" xml:space="preserve">
     <value>添加</value>
@@ -147,11 +160,17 @@
   <data name="btn_add.ToolTip" xml:space="preserve">
     <value>添加一个链接到映射列表</value>
   </data>
+  <data name="btn_edit.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="btn_edit.Text" xml:space="preserve">
     <value>编辑</value>
   </data>
   <data name="btn_edit.ToolTip" xml:space="preserve">
     <value>编辑映射列表中选中的条目</value>
+  </data>
+  <data name="btn_remove.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="btn_remove.Text" xml:space="preserve">
     <value>移除</value>
@@ -159,11 +178,17 @@
   <data name="btn_remove.ToolTip" xml:space="preserve">
     <value>移除映射列表中的选中项</value>
   </data>
+  <data name="btn_about.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
   <data name="btn_about.Text" xml:space="preserve">
     <value>关于</value>
   </data>
   <data name="btn_about.ToolTip" xml:space="preserve">
     <value>查看关于本程序的详细信息</value>
+  </data>
+  <data name="lv_links.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
