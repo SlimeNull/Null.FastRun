@@ -93,8 +93,8 @@ namespace Null.Faststart.Cli
                     },
                     (NewOption opt) =>
                     {
-                        string filename = opt.Filename;
-                        if (TrySaveConfig($"{filename}.yaml", AppConfig.Default))
+                        string filename = opt.Filename.EndsWith(".yaml", StringComparison.OrdinalIgnoreCase) ? opt.Filename : $"{opt.Filename}.yaml";
+                        if (TrySaveConfig(filename, AppConfig.Default))
                         {
                             Log.Info("New config file created");
                             return 0;

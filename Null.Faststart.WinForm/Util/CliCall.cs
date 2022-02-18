@@ -23,7 +23,6 @@ namespace Null.Faststart.WinForm.Util
                     Arguments = $"apply \"{filename}\"",
                     UseShellExecute = true,
                     CreateNoWindow = true,
-                    
                 }
             };
 
