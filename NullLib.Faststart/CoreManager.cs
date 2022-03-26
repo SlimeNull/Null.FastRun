@@ -1,14 +1,20 @@
-﻿using Null.Faststart.Module;
+﻿using IWshRuntimeLibrary;
+using Null.Faststart.Module;
 using Null.Faststart.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace NullLib.Faststart
 {
     public static class CoreManager
     {
+#if DEBUG
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
+#endif
         public static int ApplyAll(AppConfig config)
         {
             return
@@ -26,6 +32,9 @@ namespace NullLib.Faststart
         public static int ApplyLinks(AppConfig config)
         {
             int errors = 0;
+#if DEBUG
+            MessageBox(IntPtr.Zero, "Applying links", "Faststart", 0);
+#endif
 
             DirectoryInfo basedir = new DirectoryInfo(config.LinksPath);
             if (!basedir.Exists)
@@ -36,7 +45,85 @@ namespace NullLib.Faststart
                 dir.Delete();
 
             Dictionary<string, string> links = config.Links ?? new Dictionary<string, string>(0);
-            if (config.LinksMode == AppConfig.LinkMode.Symbolic)
+            if (config.LinksMode == AppConfig.LinkMode.Shortcut)
+            {
+                IWshShell wsh = new WshShell();
+                foreach (string linkName in links.Keys)
+                {
+                    string linkTarget = links[linkName];
+                    string linkFileName = Path.Combine(config.LinksPath, linkName);
+                    if (!linkFileName.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+                        linkFileName += ".lnk";
+                    FileInfo file = new FileInfo(linkTarget);
+                    if (file.Exists)
+                    {
+                        try
+                        {
+                            IWshShortcut? shortcut = wsh.CreateShortcut(linkFileName) as IWshShortcut;
+                            if (shortcut != null)
+                            {
+                                shortcut.TargetPath = file.FullName;
+                                shortcut.Save();
+#if DEBUG
+                                MessageBox(IntPtr.Zero, $"Created shortcut {linkFileName}", "Faststart", 0);
+#endif
+                            }
+                            else
+                            {
+#if DEBUG
+                                MessageBox(IntPtr.Zero, "Failed to create shortcut: " + linkFileName, "Error", 0);
+#endif
+                                errors++;
+                            }
+                        }
+                        catch
+                        {
+#if DEBUG
+                            MessageBox(IntPtr.Zero, "Failed to create shortcut: " + linkFileName, "Error", 0);
+#endif
+                            errors++;
+                        }
+                    }
+                    else
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(linkTarget);
+                        if (dir.Exists)
+                        {
+                            try
+                            {
+                                IWshShortcut? shortcut = wsh.CreateShortcut(linkFileName) as IWshShortcut;
+                                if (shortcut != null)
+                                {
+                                    shortcut.TargetPath = dir.FullName;
+                                    shortcut.Save();
+#if DEBUG
+                                    MessageBox(IntPtr.Zero, $"Created shortcut {linkFileName}", "Faststart", 0);
+#endif
+                                }
+                                else
+                                {
+#if DEBUG
+                                    MessageBox(IntPtr.Zero, "Failed to create shortcut: " + linkFileName, "Error", 0);
+#endif
+                                    errors++;
+                                }
+                            }
+                            catch
+                            {
+#if DEBUG
+                                MessageBox(IntPtr.Zero, "Failed to create shortcut: " + linkFileName, "Error", 0);
+#endif
+                                errors++;
+                            }
+                        }
+                        else
+                        {
+                            errors++;
+                        }
+                    }
+                }
+            }
+            else if (config.LinksMode == AppConfig.LinkMode.Symbolic)
             {
                 foreach (string linkName in links.Keys)
                 {

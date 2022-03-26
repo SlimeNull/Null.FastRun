@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Null.Faststart.WinForm.Util
+namespace Null.Faststart.Util
 {
     internal static class CliCall
     {

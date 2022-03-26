@@ -37,42 +37,6 @@ namespace Null.Faststart.Cli
             public string Filename { get; set; }
         }
 
-        public static ISerializer ConfigSerializer { get; } = new SerializerBuilder()
-            .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .Build();
-        public static IDeserializer ConfigDeserializer { get; } = new DeserializerBuilder()
-            .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .Build();
-
-        static bool TryLoadConfig(string filename, out AppConfig config)
-        {
-            try
-            {
-                using StreamReader sr = new StreamReader(filename);
-                config = ConfigDeserializer.Deserialize<AppConfig>(sr);
-                return true;
-            }
-            catch
-            {
-                config = null;
-                return false;
-            }
-        }
-
-        static bool TrySaveConfig(string filename, AppConfig config)
-        {
-            try
-            {
-                using StreamWriter sw = new StreamWriter(filename);
-                ConfigSerializer.Serialize(sw, config);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         static void Main(string[] args)
         {
             Environment.ExitCode = Parser.Default.ParseArguments<ApplyOption, NewOption, UninstallOption>(args)
@@ -80,10 +44,19 @@ namespace Null.Faststart.Cli
                     (ApplyOption opt) =>
                     {
                         string filename = opt.Filename;
-                        if (TryLoadConfig(filename, out AppConfig config))
+                        string configdir = Path.GetDirectoryName(filename);
+                        if (AppConfigHelper.TryLoadConfig(filename, out AppConfig config))
                         {
-                            CoreManager.ApplyAll(config);
-                            return 0;
+                            if (config.Links != null)
+                                foreach (string key in config.Links?.Keys.ToArray())
+                                {
+                                    config.Links[key] = Path.Combine(configdir, config.Links[key]);
+#if DEBUG
+                                    Console.WriteLine(config.Links[key]);
+                                    //Console.ReadKey();
+#endif
+                                }
+                            return CoreManager.ApplyAll(config);
                         }
                         else
                         {
@@ -94,7 +67,7 @@ namespace Null.Faststart.Cli
                     (NewOption opt) =>
                     {
                         string filename = opt.Filename.EndsWith(".yaml", StringComparison.OrdinalIgnoreCase) ? opt.Filename : $"{opt.Filename}.yaml";
-                        if (TrySaveConfig(filename, AppConfig.Default))
+                        if (AppConfigHelper.TrySaveConfig(filename, AppConfig.Default))
                         {
                             Log.Info("New config file created");
                             return 0;
@@ -108,9 +81,10 @@ namespace Null.Faststart.Cli
                     (UninstallOption opt) =>
                     {
                         string filename = opt.Filename;
-                        if (TryLoadConfig(filename, out AppConfig config))
+                        if (AppConfigHelper.TryLoadConfig(filename, out AppConfig config))
                         {
-                            if (CoreManager.UninstallAll(config) == 0)
+                            int errc = CoreManager.UninstallAll(config);
+                            if (errc == 0)
                             {
                                 Log.Info("Config uninstalled");
                                 return 0;
@@ -118,7 +92,7 @@ namespace Null.Faststart.Cli
                             else
                             {
                                 Log.Error("Connot uninstall config, please retry");
-                                return 1;
+                                return errc;
                             }
                         }
                         else

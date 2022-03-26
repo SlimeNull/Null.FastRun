@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Null.Faststart.WinForm.ViewModule
+namespace Null.Faststart.ViewModule
 {
     public class BindingAppConfig : AppConfig, INotifyPropertyChanged
     {

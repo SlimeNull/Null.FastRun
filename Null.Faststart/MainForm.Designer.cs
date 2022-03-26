@@ -1,4 +1,4 @@
-﻿namespace Null.Faststart.WinForm
+﻿namespace Null.Faststart
 {
     partial class MainForm
     {
@@ -41,6 +41,7 @@
             this.lv_links = new System.Windows.Forms.DataGridView();
             this.bdr_links = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lv_links)).BeginInit();
             this.bdr_links.SuspendLayout();
             this.SuspendLayout();
@@ -129,9 +130,18 @@
             this.bdr_links.Controls.Add(this.lv_links);
             this.bdr_links.Name = "bdr_links";
             // 
+            // btn_save
+            // 
+            resources.ApplyResources(this.btn_save, "btn_save");
+            this.btn_save.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_save.Name = "btn_save";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btn_ok;
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_cancel;
@@ -142,10 +152,12 @@
             this.Controls.Add(this.btn_remove);
             this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_ok);
             this.Name = "MainForm";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.lv_links)).EndInit();
             this.bdr_links.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.DataGridView lv_links;
         private System.Windows.Forms.Panel bdr_links;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button btn_save;
     }
 }
 

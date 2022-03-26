@@ -1,7 +1,7 @@
 ﻿using Null.Faststart.Module;
 using Null.Faststart.Util;
-using Null.Faststart.WinForm.Util;
-using Null.Faststart.WinForm.ViewModule;
+using Null.Faststart.Util;
+using Null.Faststart.ViewModule;
 using NullLib.Faststart;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Null.Faststart.WinForm.View
+namespace Null.Faststart.View
 {
     public partial class ConfigDialog : Form
     {
@@ -28,6 +28,7 @@ namespace Null.Faststart.WinForm.View
 
             comb_linkmode.DataSource = new AppConfig.LinkMode[]
             {
+                AppConfig.LinkMode.Shortcut,
                 AppConfig.LinkMode.Symbolic,
                 AppConfig.LinkMode.Hard
             };

@@ -11,6 +11,7 @@ namespace Null.Faststart.Module
     {
         public enum LinkMode
         {
+            Shortcut,
             Symbolic,
             Hard,
         }

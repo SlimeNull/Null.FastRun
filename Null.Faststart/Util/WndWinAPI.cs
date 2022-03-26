@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Null.Faststart.WinForm.Util
+namespace Null.Faststart.Util
 {
     public static class WndWinAPI
     {

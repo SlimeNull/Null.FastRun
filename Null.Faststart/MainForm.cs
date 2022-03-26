@@ -2,29 +2,48 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using YamlDotNet.Serialization;
-using Null.Faststart.WinForm.View;
-using Null.Faststart.WinForm.Util;
-using Microsoft.Win32;
 using Null.Faststart.Module;
+using Null.Faststart.Cli.Util;
+using Null.Faststart.View;
 using Null.Faststart.Util;
-using NullLib.Faststart;
+using Null.Faststart.ViewModule;
+using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using Null.Faststart.WinForm.ViewModule;
 
-namespace Null.Faststart.WinForm
+namespace Null.Faststart
 {
     public partial class MainForm : Form
     {
-        public static string AppConfigPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
+        private AppConfig config;
 
-        public AppConfig Config { get; }
+        public static string AppConfigPath { get; private set; }
+
+        static MainForm()
+        {
+            AppConfigPath = Program.Args.Length == 0 || !Program.Args[0].EndsWith(".yaml") || !File.Exists(Program.Args[0]) ?
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml") :
+                Program.Args[0];
+        }
+
+        public AppConfig Config
+        {
+            get => config;
+            private set
+            {
+                config = value;
+                if (LinkList is BindingList<LinkInfo> linklist && config.Links is Dictionary<string, string>)
+                {
+                    linklist.Clear();
+                    foreach (var link in config.Links)
+                    {
+                        linklist.Add(new LinkInfo(link.Key, link.Value));
+                    }
+                }
+            }
+        }
         public BindingList<LinkInfo> LinkList { get; }
 
         public ISerializer ConfigSerializer { get; } = new SerializerBuilder()
@@ -38,24 +57,33 @@ namespace Null.Faststart.WinForm
         {
             InitializeComponent();
 
-            if (File.Exists(AppConfigPath))
+            if (AppConfigHelper.TryLoadConfig(AppConfigPath, out AppConfig config))
             {
-                using StreamReader sr = new StreamReader(AppConfigPath);
-                Config = ConfigDeserializer.Deserialize<AppConfig>(sr);
+                Config = config;
             }
             else
             {
                 Config = AppConfig.Default;
-                using StreamWriter sw = new StreamWriter(AppConfigPath);
-                ConfigSerializer.Serialize(sw, Config);
+                if (!AppConfigHelper.TrySaveConfig(AppConfigPath, Config))
+                {
+                    MessageBox.Show("Cannot load config or create config", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(-1);
+                }
             }
 
-            LinkList = Config.Links == default ?
-                new BindingList<LinkInfo>() :
-                new BindingList<LinkInfo>(Config.Links.Select(ln => new LinkInfo(ln.Key, ln.Value)).ToList());
+            if (Config.Links == default)
+            {
+                Config.Links = new Dictionary<string, string>();
+            }
+
+            LinkList = new BindingList<LinkInfo>(Config.Links.Select(ln => new LinkInfo(ln.Key, ln.Value)).ToList());
             lv_links.DataSource = LinkList;
         }
 
+        private void UpdateModel()
+        {
+            Config.Links = LinkList.ToDictionary(ln => ln.Name, ln => ln.Target);
+        }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -89,29 +117,22 @@ namespace Null.Faststart.WinForm
 
         private void btn_apply_all_Click(object sender, EventArgs e)
         {
-            ApplyConfig();
-            if (CliCall.ApplyConfig(AppConfigPath) == 0)
+            UpdateModel();
+            if (AppConfigHelper.TrySaveConfig(AppConfigPath, Config))
             {
-                MessageBox.Show("All done", "Succeed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (CliCall.ApplyConfig(AppConfigPath) == 0)
+                {
+                    MessageBox.Show("All done", "Succeed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong, please retry", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Something went wrong, please retry", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cannot save config", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void ApplyConfig()
-        {
-            Config.Links = LinkList
-                .ToDictionary(ln => ln.Name, ln => ln.Target);
-            using (StreamWriter sw = new StreamWriter(AppConfigPath))
-            {
-                ConfigSerializer.Serialize(sw, Config);
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
 
         }
 
@@ -177,6 +198,47 @@ namespace Null.Faststart.WinForm
             {
                 Config.LinksPath = dlg.ViewModule.LinksPath;
                 Config.LinksMode = dlg.ViewModule.LinksMode;
+            }
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            UpdateModel();
+            if (!AppConfigHelper.TrySaveConfig(AppConfigPath, Config))
+                MessageBox.Show("Cannot save config", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                if (e.Data.GetData(DataFormats.FileDrop) is string[] files && files.Length > 0)
+                {
+                    if (files[0].EndsWith(".yaml"))
+                    {
+                        e.Effect = DragDropEffects.Copy;
+                    }
+                }
+            }
+        }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                if (e.Data.GetData(DataFormats.FileDrop) is string[] files && files.Length > 0)
+                {
+                    string filename = files[0];
+                    if (AppConfigHelper.TryLoadConfig(filename, out AppConfig config))
+                    {
+                        AppConfigPath = filename;
+                        Config = config;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid format of config file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

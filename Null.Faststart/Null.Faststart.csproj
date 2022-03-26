@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9D599507-A578-4863-BA77-FA5B8E806007}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Null.Faststart.WinForm</RootNamespace>
-    <AssemblyName>Null.Faststart.WinForm</AssemblyName>
+    <RootNamespace>Null.Faststart</RootNamespace>
+    <AssemblyName>Null.Faststart</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -67,6 +67,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PropertyChanged, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
@@ -156,6 +159,7 @@
     <EmbeddedResource Include="View\EditLinkDialog.zh-Hans.resx">
       <DependentUpon>EditLinkDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="Null.Faststart.WinForm_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

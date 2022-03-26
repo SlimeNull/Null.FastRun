@@ -1,4 +1,4 @@
-﻿using Null.Faststart.WinForm.Util;
+﻿using Null.Faststart.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Null.Faststart.WinForm.View
+namespace Null.Faststart.View
 {
     public partial class AboutDialog : Form
     {

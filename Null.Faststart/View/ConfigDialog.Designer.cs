@@ -1,4 +1,4 @@
-﻿namespace Null.Faststart.WinForm.View
+﻿namespace Null.Faststart.View
 {
     partial class ConfigDialog
     {

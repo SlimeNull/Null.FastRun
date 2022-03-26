@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Null.Faststart.WinForm.Util
+namespace Null.Faststart.Util
 {
     public class AutoPlaceForm : Form
     {

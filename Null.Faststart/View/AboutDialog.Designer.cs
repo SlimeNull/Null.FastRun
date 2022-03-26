@@ -1,4 +1,4 @@
-﻿namespace Null.Faststart.WinForm.View
+﻿namespace Null.Faststart.View
 {
     partial class AboutDialog
     {
@@ -64,7 +64,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Null.Faststart.WinForm.Properties.Resources.null_faststart_128x128;
+            this.pictureBox1.Image = global::Null.Faststart.Properties.Resources.null_faststart_128x128;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
