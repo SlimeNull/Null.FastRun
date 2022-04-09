@@ -198,11 +198,21 @@ namespace NullLib.FastRun
             int errors = 0;
             if (SysUtil.CanAccessSystemEnvironmentVariables())
             {
+                if (config.LinksMode == AppConfig.LinkMode.Shortcut)
+                {
+                    const string LNKEXT = ".LNK";
+                    string pathExtEnv = SysUtil.GetSystemEnvironmentVariable("PATHEXT");
+                    string[] pathExts = pathExtEnv.Split(';');
+                    if (!pathExts.Contains(LNKEXT))
+                    {
+                        SysUtil.SetSystemEnvironmentVariable("PATHEXT", string.Join(";", pathExts.Append(LNKEXT)));
+                    }
+                }
+
                 string pathEnv = SysUtil.GetSystemEnvironmentVariable("Path");
                 string[] pathDirs = pathEnv.Split(';');
                 if (!pathDirs.Contains(config.LinksPath))
                 {
-                    SysUtil.SetSystemEnvironmentVariable("_PATH", pathEnv);
                     SysUtil.SetSystemEnvironmentVariable("Path", string.Join(";", pathDirs.Append(config.LinksPath)));
                 }
             }
