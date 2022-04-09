@@ -17,7 +17,7 @@ namespace NullLib.FastRun
         }
         public static AppConfig Default { get; } = new AppConfig()
         {
-            LinksPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "NFastTool")
+            LinksPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "N" + nameof(FastRun))
         };
 
         public string? LinksPath { get; set; }

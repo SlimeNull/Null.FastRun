@@ -1,9 +1,6 @@
 # Null.Faststart
 
-<div align="center">
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SlimeNull/Null.Faststart">
-<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/SlimeNull/Null.Faststart/total">
-</div>
+![GitHub last commit](https://img.shields.io/github/last-commit/SlimeNull/Null.FastRun) ![GitHub all releases](https://img.shields.io/github/downloads/SlimeNull/Null.FastRun/total)
 
 一个快捷工具集管理工具, 设定从名称到路径的映射, 程序将自动帮你创建符号或硬链接, 并添加到 PATH 环境变量, 至此, 你便可以用通过 '运行对话框' 或着其他任何东西直接访问到你的程序, 文件或目录
 
