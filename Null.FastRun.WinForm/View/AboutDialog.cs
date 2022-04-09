@@ -21,7 +21,7 @@ namespace Null.FastRun.View
 
         private void lnlb_github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/SlimeNull/Null.Faststart");
+            Process.Start(lnlb_github.Text);
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
